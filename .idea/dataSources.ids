@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - crmdb@localhost" uuid="6263ba12-2039-4d49-8b8b-d2914b1e19c9">
+    <database-info product="MySQL" version="5.6.27-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="crmdb"/>
+    <table name="actividades" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idCliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idContacto" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idTipoActividad" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="comentario" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="actividades_ibfk_1" columns="idCliente" ref-table="clientes" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="actividades_ibfk_2" columns="idContacto" ref-table="contactos" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="actividades_ibfk_3" columns="idTipoActividad" ref-table="tipo_actividades" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="area_contactos" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="contactos_ibfk_3" table="contactos" schema="" catalog="crmdb" columns="idArea"/>
+    </table>
+    <table name="cargo_contactos" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="contactos_ibfk_2" table="contactos" schema="" catalog="crmdb" columns="idCargo"/>
+    </table>
+    <table name="clientes" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idMinisterio" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="rut" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="codigo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sigla" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="idRegion" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="direccion" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="numeroTrabajadores" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="direccionWeb" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="fono" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="skype" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="idTipoCliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="logo" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="presupuesto" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="clientes_ibfk_1" columns="idMinisterio" ref-table="ministerios" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="clientes_ibfk_2" columns="idRegion" ref-table="regions" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="clientes_ibfk_3" columns="idTipoCliente" ref-table="tipo_clientes" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="actividades_ibfk_1" table="actividades" schema="" catalog="crmdb" columns="idCliente"/>
+      <exported-key name="contactos_ibfk_1" table="contactos" schema="" catalog="crmdb" columns="idCliente"/>
+      <exported-key name="proyectos_ibfk_1" table="proyectos" schema="" catalog="crmdb" columns="idCliente"/>
+    </table>
+    <table name="contactos" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="apellido" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idCliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idCargo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email_secretaria" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fono" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="movil" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idArea" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idRegion" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="direccionPostal" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="skype" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idEstado" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="contactos_ibfk_1" columns="idCliente" ref-table="clientes" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="contactos_ibfk_2" columns="idCargo" ref-table="cargo_contactos" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="contactos_ibfk_3" columns="idArea" ref-table="area_contactos" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="contactos_ibfk_4" columns="idRegion" ref-table="regions" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="contactos_ibfk_5" columns="idEstado" ref-table="estado_contactos" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="actividades_ibfk_2" table="actividades" schema="" catalog="crmdb" columns="idContacto"/>
+      <exported-key name="proyectos_ibfk_2" table="proyectos" schema="" catalog="crmdb" columns="idContacto"/>
+    </table>
+    <table name="estado_contactos" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="contactos_ibfk_5" table="contactos" schema="" catalog="crmdb" columns="idEstado"/>
+    </table>
+    <table name="ministerios" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="clientes_ibfk_1" table="clientes" schema="" catalog="crmdb" columns="idMinisterio"/>
+    </table>
+    <table name="proyectos" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idCliente" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idContacto" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="nombreProyecto" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="codigoProyecto" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="montoProyecto" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="proyectos_ibfk_1" columns="idCliente" ref-table="clientes" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="proyectos_ibfk_2" columns="idContacto" ref-table="contactos" ref-schema="" ref-catalog="crmdb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="regions" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="region_nombre" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="region_ordinal" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="clientes_ibfk_2" table="clientes" schema="" catalog="crmdb" columns="idRegion"/>
+      <exported-key name="contactos_ibfk_4" table="contactos" schema="" catalog="crmdb" columns="idRegion"/>
+    </table>
+    <table name="tipo_actividades" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="actividades_ibfk_3" table="actividades" schema="" catalog="crmdb" columns="idTipoActividad"/>
+    </table>
+    <table name="tipo_clientes" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="clientes_ibfk_3" table="clientes" schema="" catalog="crmdb" columns="idTipoCliente"/>
+    </table>
+    <table name="tipo_usuarios" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombre" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="descripcion" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="usuarios" schema="" catalog="crmdb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nombreUsuario" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="apellidoUsuario" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idTipoUsuario" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+  </data-source>
+</component>
